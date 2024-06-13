@@ -8,7 +8,7 @@ class Character {
 
         if (str > magic && str > def) this.subClass = "Fighter"
         else if (str < magic && magic > def) this.subClass = "Wizard"
-        else if (def > magic && str < def) this.subClass = "Defnder"
+        else if (def > magic && str < def) this.subClass = "Defender"
     }
 
 }
@@ -18,6 +18,8 @@ const p1 = new Character("Douglas")
 const p2 = new Character("Nick")
 
 const p3 = new Character("Eddy")
+
+const fighters = [p1, p2, p3]
 
 const combat = (f1, f2) => {
     var exp = 75;
@@ -45,4 +47,17 @@ const combat = (f1, f2) => {
     else return "This fight is draw"
 }
 
-console.log(combat(p1, p2))
+const randomDraw = (fighters) => {
+
+    firstIndex = Math.floor(Math.random() * fighters.length)
+    firstFighter = fighters[firstIndex]
+    fighters.splice(firstIndex, 1)
+    secondIndex = Math.floor(Math.random() * fighters.length)
+    secondFighter = fighters[secondIndex]
+
+
+    return combat(firstFighter, secondFighter)
+
+}
+
+console.log(randomDraw(fighters))
